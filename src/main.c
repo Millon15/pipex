@@ -6,7 +6,7 @@
 /*   By: vbrazas <vbrazas@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 15:14:41 by vbrazas           #+#    #+#             */
-/*   Updated: 2018/07/21 20:05:47 by vbrazas          ###   ########.fr       */
+/*   Updated: 2018/07/21 21:17:47 by bgres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,45 @@ int				put_usage(const int errnum)
 	return (1);
 }
 
-void			start(int ac, const char **av)
+char			*pipex_join(char *str1, char *str2)
 {
-	char *const		c[4] = {"/bin/zsh", "-c", "< autor cat", NULL};
+	char *tmp2;
+
+	tmp2 = str1;
+	str1 = ft_strjoin(str1, str2);
+	free(tmp2);
+	return (str1);
+}
+
+char			*pars(int ac, char **av)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (++i < ac)
+	{
+		if (i == 1)
+			str = ft_strjoin("< ", av[i]);
+		else if (i == ac - 1)
+		{
+			str = pipex_join(str, " > ");
+			str = pipex_join(str, av[i]);
+		}
+		else
+		{
+			str = pipex_join(str, " ");
+			str = pipex_join(str, av[i]);
+			if (i != ac - 2)
+				str = pipex_join(str, " |");
+		}
+	}
+	return (str);
+}
+
+void			start(int ac, char **av)
+{
+	char *const		c[4] = {"/bin/zsh", "-c", pars(ac, av), NULL};
 	char *const		e[1] = {NULL};
 	pid_t			pid;
 
@@ -36,9 +72,10 @@ void			start(int ac, const char **av)
 		execve("/bin/zsh", c, e);
 		put_usage(0);
 	}
+	free(c[2]);
 }
 
-int				main(int ac, const char **av)
+int				main(int ac, char **av)
 {
 	if (ac < 5)
 		put_usage(1);
