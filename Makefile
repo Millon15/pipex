@@ -6,7 +6,7 @@
 #    By: vbrazas <vbrazas@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/28 19:24:02 by vbrazas           #+#    #+#              #
-#    Updated: 2018/07/21 19:54:49 by vbrazas          ###   ########.fr        #
+#    Updated: 2018/07/21 21:08:23 by vbrazas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,18 @@ clean:
 
 fclean:
 	make fclean -C $(LIB_PATH)
-	rm -f $(OBJ) $(NAME)
+	rm -f $(NAME)
 	rm -rf $(OBJ_PATH)
 
 re: fclean all
+
+mclean:
+	rm -f $(OBJ)
+
+mfclean:
+	rm -f $(NAME)
+	rm -rf $(OBJ_PATH)
+
+mre: mfclean all
 
 .PHONY: all clean fclean re
