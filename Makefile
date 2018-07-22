@@ -6,7 +6,7 @@
 #    By: vbrazas <vbrazas@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/28 19:24:02 by vbrazas           #+#    #+#              #
-#    Updated: 2018/07/22 21:46:19 by vbrazas          ###   ########.fr        #
+#    Updated: 2018/07/22 23:31:53 by vbrazas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ WFLAGS = -Wall -Werror -Wextra
 IFLAGS = -I $(INC_PATH) -I $(LIB_PATH)
 
 LIB = $(LIB_PATH)libftprintf.a
-FILES = main
+FILES = main opendir
 
 SRCS = $(addprefix $(SRC_PATH), $(addsuffix .c, $(FILES)))
 OBJ = $(addprefix $(OBJ_PATH), $(SRCS:%.c=%.o))
