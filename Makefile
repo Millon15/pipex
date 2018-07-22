@@ -6,7 +6,7 @@
 #    By: vbrazas <vbrazas@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/28 19:24:02 by vbrazas           #+#    #+#              #
-#    Updated: 2018/07/21 21:08:23 by vbrazas          ###   ########.fr        #
+#    Updated: 2018/07/22 14:40:59 by vbrazas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_PATH = includes/
 OBJ_PATH = obj/
 
 C = clang
-WFLAGS = #-Wall -Werror -Wextra -pedantic -pedantic-errors
+WFLAGS = -Wall -Werror -Wextra -pedantic -pedantic-errors
 IFLAGS = -I $(INC_PATH) -I $(LIB_PATH)
 
 LIB = $(LIB_PATH)libftprintf.a
